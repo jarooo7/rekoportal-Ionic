@@ -10,18 +10,28 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {AngularFireModule} from 'angularfire2';
+import { IonicStorageModule } from '@ionic/storage';
+import { firebase_config } from './app.firebase.config';
+import { LoginPage } from '../pages/login/login';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
     ContactPage,
+    LoginPage,
     HomePage,
     TabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebase_config),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,6 +39,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
+    LoginPage,
     TabsPage
   ],
   providers: [
