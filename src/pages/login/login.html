@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>login</ion-title>
+    <ion-title>{{'nav.profile'|translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,13 +15,13 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-label>Email </ion-label>
+    <ion-label>{{'auth.email'|translate}}</ion-label>
     <ion-input type=text [(ngModel)]="user.email"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Password</ion-label>
+    <ion-label>{{'auth.password'|translate}}</ion-label>
     <ion-input type=text [(ngModel)]="user.password"></ion-input>
   </ion-item>
-  <button ion-button (click)="login(user)">Login</button>
-  <button ion-button (click)="register(user)">Register</button>
+  <button ion-button (click)="login(user)">{{'auth.log'|translate}}</button>
+  <button color="light" ion-button (click)="register(user)">{{'auth.register'|translate}}</button>
 </ion-content>
