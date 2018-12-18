@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { UserModel } from '../../models/user';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the LoginPage page.
@@ -19,9 +19,13 @@ export class LoginPage {
 
   user ={} as UserModel;
 
-  constructor(
-    private auth: AngularFireAuth, 
-    public navCtrl: NavController, public navParams: NavParams) {
+  constructor( 
+    private auth: AuthProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public toastCtrl: ToastController
+    
+  ) {
   }
 
   ionViewDidLoad() {
@@ -29,14 +33,20 @@ export class LoginPage {
   }
 
   async login(user: UserModel) {
-    try{
-      const result = this.auth.auth.signInWithEmailAndPassword(user.email, user.password);
-      console.log(result);
-    }
-    catch (e) {
-      console.error(e);
-    }
-    
+    this.auth.login(user).then(() => this.presentToast('tak', 'success')).catch(() => this.presentToast('nie', 'danger'));
+  }
+  async register(user: UserModel) {
+    this.auth.register(user).then(() => this.presentToast('tak', 'success')).catch(() => this.presentToast('nie', 'danger'));
+  }
+
+  presentToast(msg: string, color: string) {
+    const toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      cssClass: color
+    });
+    toast.present();
   }
 
 }

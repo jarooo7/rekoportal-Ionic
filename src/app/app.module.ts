@@ -15,6 +15,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { firebase_config } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthProvider } from '../providers/auth/auth';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider
   ]
 })
 export class AppModule {}
