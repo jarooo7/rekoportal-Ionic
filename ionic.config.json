@@ -1,0 +1,7 @@
+{
+  "name": "rekoportal",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
