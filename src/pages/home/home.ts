@@ -7,6 +7,8 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  logo: string ='./assets/imgs/logo.png';
+
   constructor(public navCtrl: NavController) {
 
   }

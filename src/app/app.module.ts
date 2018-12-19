@@ -20,6 +20,10 @@ import { firebase_config } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import {AngularFireStorageModule} from 'angularfire2/storage';
+import { ChatProvider } from '../providers/chat/chat';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -41,13 +45,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebase_config),
     AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -62,7 +68,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    ChatProvider
   ]
 })
 export class AppModule {}

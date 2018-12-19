@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { UserModel } from '../../models/user';
 import { AuthProvider } from '../../providers/auth/auth';
+import { Observable } from 'rxjs';
 
 /**
  * Generated class for the LoginPage page.
@@ -18,14 +19,27 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class LoginPage {
 
   user ={} as UserModel;
+  isAuth: boolean;
+  validate: boolean;
+  logUser: Observable<firebase.User>;
 
   constructor( 
     private auth: AuthProvider,
     public navCtrl: NavController,
     public navParams: NavParams,
     public toastCtrl: ToastController
-    
   ) {
+      this.logUser = auth.authState$;
+      this.logUser.subscribe(u => {
+        if (u) {
+          this.isAuth =  true;
+          this.validate = u.emailVerified
+        } else {
+          this.validate = false;
+          this.isAuth = false;
+          console.log('sdad');
+        }
+      });
   }
 
   ionViewDidLoad() {
@@ -39,6 +53,10 @@ export class LoginPage {
     this.auth.register(user).then(() => this.presentToast('tak', 'success')).catch(() => this.presentToast('nie', 'danger'));
   }
 
+  logout(){
+    this.auth.logout();
+  }
+
   presentToast(msg: string, color: string) {
     const toast = this.toastCtrl.create({
       message: msg,
@@ -49,4 +67,11 @@ export class LoginPage {
     toast.present();
   }
 
+  public loginFb() {
+    this.auth.facebookLogin().then(() => this.presentToast('tak', 'success')).catch(() => this.presentToast('nie', 'danger'));
+  }
+  
+  public loginGoogle() {
+    this.auth.googleLogin().then(() => this.presentToast('tak', 'success')).catch(() => this.presentToast('nie', 'danger'));
+  }
 }

@@ -13,15 +13,37 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-item>
-    <ion-label>{{'auth.email'|translate}}</ion-label>
-    <ion-input type=text [(ngModel)]="user.email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>{{'auth.password'|translate}}</ion-label>
-    <ion-input type=text [(ngModel)]="user.password"></ion-input>
-  </ion-item>
-  <button ion-button (click)="login(user)">{{'auth.log'|translate}}</button>
-  <button color="light" ion-button (click)="register(user)">{{'auth.register'|translate}}</button>
+<ion-content padding text-center>  
+  <div *ngIf="!isAuth">
+    <h2>{{'auth.login'|translate}}
+    </h2>
+    <ion-item>
+      <ion-label>{{'auth.email'|translate}}</ion-label>
+      <ion-input type=text [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{'auth.password'|translate}}</ion-label>
+      <ion-input type=password [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+    <button ion-button (click)="login(user)">{{'auth.login'|translate}}</button>
+    <button color="light" ion-button (click)="register(user)">{{'auth.register'|translate}}</button>
+    <h5 text-center padding-vertical>
+        {{'global.or'|translate}}
+    </h5>
+      <button color="dark" text-capitalize block ion-button icon-start (click)="loginFb()">
+        <ion-icon name="logo-facebook"></ion-icon> {{'auth.fb'|translate}}
+      </button>
+    <br>
+      <button color="dark" text-capitalize block ion-button icon-start (click)="loginGoogle()">
+      <ion-icon name="logo-google"></ion-icon> {{'auth.google'|translate}}
+      </button>
+  </div>
+  <div *ngIf="isAuth">
+    <div *ngIf="!validate">
+      <h2>{{'not-active.title'|translate}}</h2>
+      <p>{{'not-active.info-text'|translate}}</p>
+      <button ion-button (click)="sendEmail()">{{'not-active.send'|translate}}</button>
+    </div>
+    <button ion-button (click)="logout()">{{'auth.logout'|translate}}</button>
+  </div>
 </ion-content>

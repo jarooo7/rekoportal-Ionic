@@ -4,6 +4,11 @@
         "profile": "Profil",
         "contacts": "Kontakty"
     },
+    "not-active": {
+        "title": "Aktywuj konto",
+        "info-text": "Aktywuj konto by móc korzystać w pełni z wszystkich funkcji. Na twój adres email został wysłany kod aktywacyjny dzięki któremu aktywujesz konto. Jeśli nie otrzymałeś maila aktywacyjnego wciśnij przycisk ponirzej.",
+        "send": "Wyślij ponownie email aktywacyjny"
+    },
     "auth": {
         "log": "Logowanie",
         "register": "Rejestracja",
@@ -52,5 +57,23 @@
             "errorSendActiveEmail": "Wystąpił błąd przy wysyłaniu maila aktywacyjnego. Spróbuj jescze raz!",
             "addPost": "Dodanie postu nie powieodło się!"
         }
+    },
+    "global": {
+        "language": "Język",
+        "or": "Lub",
+        "send": "Wyślij",
+        "save": "Zapisz",
+        "name": "Imię",
+        "lastName": "Nazwisko",
+        "age": "Wiek",
+        "dateBirth": "Data urodzenia",
+        "search": "Wyszukaj",
+        "like": "Lubię to!",
+        "next": "Załaduj więcej ...",
+        "searchText": "Wyszukaj użytkownika lub grupę",
+        "searchResult": "Wynik wyszukiwania",
+        "myProfile": "Mój profil",
+        "contacts": "Kontakty",
+        "refresh": "Odśwież"
     }
 }
