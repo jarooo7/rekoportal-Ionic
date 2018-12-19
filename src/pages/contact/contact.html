@@ -17,9 +17,9 @@
       <ion-list *ngIf="validate">
           <ion-list-header></ion-list-header>
           <ion-item *ngFor="let f of friends | async" >
-            <ion-icon name="ionic" item-start></ion-icon>
-            {{f.userId}}
+            <page-friend-item [getFriend]="f"></page-friend-item>
           </ion-item>
       </ion-list>
     </div>
+    
 </ion-content>
