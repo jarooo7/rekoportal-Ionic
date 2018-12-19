@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { UserModel } from '../../models/user';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Observable } from 'rxjs';
+import * as firebase from 'firebase/app';
 
 /**
  * Generated class for the LoginPage page.

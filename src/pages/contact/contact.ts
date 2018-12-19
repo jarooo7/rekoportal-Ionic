@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { UserId } from '../../models/userId';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Observable } from 'rxjs';
+import * as firebase from 'firebase/app';
 import { LoginPage } from '../login/login';
 
 @Component({
