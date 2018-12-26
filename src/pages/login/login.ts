@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { UserModel } from '../../models/user';
+import { UserModel, ProfileModel } from '../../models/user';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
+import { map } from 'rxjs/operators';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,6 +22,7 @@ export class LoginPage {
 
   user ={} as UserModel;
   isAuth: boolean;
+  profile: ProfileModel;
   validate: boolean;
   logUser: Observable<firebase.User>;
 
@@ -34,7 +36,8 @@ export class LoginPage {
       this.logUser.subscribe(u => {
         if (u) {
           this.isAuth =  true;
-          this.validate = u.emailVerified
+          this.validate = u.emailVerified;
+          this.loadProfile(u.uid);
         } else {
           this.validate = false;
           this.isAuth = false;
@@ -75,4 +78,16 @@ export class LoginPage {
   public loginGoogle() {
     this.auth.googleLogin().then(() => this.presentToast('tak', 'success')).catch(() => this.presentToast('nie', 'danger'));
   }
+
+  
+  loadProfile(id: string) {
+    this.auth.getProfile(id).pipe(
+      map(profile => ({ key: profile.payload.key, ...profile.payload.val() })
+      )
+    ).subscribe(result => {
+      console.log(result);
+      this.profile = result;
+    });
+  }
+
 }

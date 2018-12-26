@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { UserId } from '../../models/userId';
 import { ProfileModel } from '../../models/user';
-import { MsgNotificationModel } from '../../models/msg';
+import { MsgNotificationModel, MsgModel } from '../../models/msg';
 import { AuthProvider } from '../auth/auth';
 import { Status } from '../../models/status';
 
@@ -45,6 +45,16 @@ export class ChatProvider {
     let profile: AngularFireObject<ProfileModel> = null;
     profile = this.dataBase.object(`profile/${userId}`);
     return profile.snapshotChanges();
+  }
+  
+  getMsg(id: string, batch: number, lastKey?: string) {
+    let com: AngularFireList<MsgModel> =  null;
+    if (lastKey) {
+      com = this.dataBase.list(`msg/${id}`, ref => ref.orderByChild('timestamp').limitToLast(batch).endAt(lastKey));
+    } else {
+      com = this.dataBase.list(`msg/${id}`, ref => ref.orderByChild('timestamp').limitToLast(batch));
+    }
+    return com.snapshotChanges();
   }
 
   isReadOut(key: string) {

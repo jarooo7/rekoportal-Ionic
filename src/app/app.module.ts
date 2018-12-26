@@ -24,6 +24,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {AngularFireStorageModule} from 'angularfire2/storage';
 import { ChatProvider } from '../providers/chat/chat';
 import { FriendItemPage } from '../pages/friend-item/friend-item';
+import { MsgPage } from '../pages/msg/msg';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -37,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ContactPage,
     LoginPage,
     HomePage,
+    MsgPage,
     FriendItemPage,
     TabsPage
   ],
@@ -63,6 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AboutPage,
     ContactPage,
     HomePage,
+    MsgPage,
     LoginPage,
     FriendItemPage,
     TabsPage

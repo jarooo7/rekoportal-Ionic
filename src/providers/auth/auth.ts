@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserModel } from '../../models/user';
+import { UserModel, ProfileModel } from '../../models/user';
 import { Status } from '../../models/status';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase';
@@ -41,7 +41,13 @@ export class AuthProvider {
         return stat.set({ status: 'offline' }).then(() => this.userId = null);
       }
     }
-  
+    
+    getProfile(userId) {
+      let profile: AngularFireObject<ProfileModel> = null;
+      profile = this.dataBase.object(`profile/${userId}`);
+      return profile.snapshotChanges();
+    }
+
     private updateOnDisconnect() {
       firebase.database().ref().child(`status/${this.userId}`)
               .onDisconnect()

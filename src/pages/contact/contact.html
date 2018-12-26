@@ -15,7 +15,7 @@
         <button ion-button (click)="sendEmail()">{{'not-active.send'|translate}}</button>
       </div>
       <ion-list *ngIf="validate">
-          <ion-list-header></ion-list-header>
+          <!-- <ion-list-header></ion-list-header> -->
           <ion-item *ngFor="let f of friends | async" >
             <page-friend-item [getFriend]="f"></page-friend-item>
           </ion-item>

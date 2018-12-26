@@ -1,7 +1,11 @@
-<ion-item *ngIf="friend">
-  <ion-avatar item-start>
+<ion-item (click)="openMsg()" [ngClass]="classRead" *ngIf="friend">
+  <ion-avatar item-start *ngIf="friend.avatar">
     <img src="{{friend.avatar.url}}">
   </ion-avatar>
+  <ion-avatar item-start *ngIf="!friend.avatar">
+    <img src="{{'../../assets/imgs/profile.png'}}">
+  </ion-avatar>
   <h2>{{friend.name}} {{friend.lastName}}</h2>
-  <p>Ugh. As if.</p>
+  <p *ngIf="msg && msg.text">{{msg.text}}</p>
+  <ion-icon [ngClass]="status" item-end name="radio-button-on"></ion-icon>
 </ion-item>

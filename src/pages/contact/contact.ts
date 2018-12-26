@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { ChatProvider } from '../../providers/chat/chat';
 import { map } from 'rxjs/operators';
 import { UserId } from '../../models/userId';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
-import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-contact',
@@ -19,7 +18,8 @@ export class ContactPage {
   isAuth: boolean;
   validate: boolean;
   logUser: Observable<firebase.User>;
-
+  a: UserId;
+  
   constructor(
     private auth: AuthProvider,
     private chatService: ChatProvider,

@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { UserId } from '../../models/userId';
 import { ChatProvider } from '../../providers/chat/chat';
 import { map } from 'rxjs/operators';
 import { ProfileModel } from '../../models/user';
+import { MsgModel } from '../../models/msg';
+import { MsgPage } from '../msg/msg';
 
 /**
  * Generated class for the FriendItemPage page.
@@ -20,16 +22,19 @@ import { ProfileModel } from '../../models/user';
 export class FriendItemPage {
   @Input() set getFriend(uid: UserId) {
     this.friendId = uid;
-    this.isRead = false;
+    this.classRead = '';
     this.isReadOut(uid.msgId);
+    this.loadMsg(uid.msgId);
     this.loadFriend();
     this.loadStat(uid.userId);
   }
-  isRead: boolean;
+  classRead: string;
   friendId: UserId;
+  msg: MsgModel ;
   status: string;
   friend: ProfileModel;
   constructor(
+    public modalCtrl: ModalController,
     private chatService: ChatProvider,
     public navCtrl: NavController, public navParams: NavParams
   ) { }
@@ -52,15 +57,33 @@ export class FriendItemPage {
     });
   }
 
+  openMsg(){
+    let profileModal = this.modalCtrl.create(MsgPage, {
+      id: this.friendId.userId,
+      msgId: this.friendId.msgId,
+      name: `${this.friend.name} ${this.friend.lastName}`, 
+      avatar: this.friend.avatar.url
+      });
+    profileModal.present();
+  }
+
+  loadMsg(id){
+    this.chatService.getMsg(id, 1 ).pipe(
+      map(result =>
+        result.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )).subscribe(result => {
+      this.msg = result[0];
+    });
+  }
   
   isReadOut(id: string) {
     this.chatService.isReadOut(id).pipe(
       map(f => ({ key: f.payload.key, ...f.payload.val() }))
     ).subscribe(result => {
         if (result.isRead) {
-          this.isRead = true;
+          this.classRead = 'bold';
         } else {
-          this.isRead = false;
+          this.classRead = '';
         }
     });
   }
