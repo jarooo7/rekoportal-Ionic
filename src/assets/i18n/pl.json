@@ -58,6 +58,9 @@
             "addPost": "Dodanie postu nie powieodło się!"
         }
     },
+    "msg":{
+        "writeMsg": "Napisz wiadomość"
+    },
     "global": {
         "language": "Język",
         "or": "Lub",

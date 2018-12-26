@@ -1,5 +1,5 @@
 .bold{
-    font-weight: 800;
+    font-weight: 900;
 }
 
 .online{
@@ -8,4 +8,11 @@
 
 .offline{
     color: #b32f25;
+}
+
+.badge {
+    background-color: red;
+    position: absolute;
+    top: 10px;
+    border-radius: 100%;
 }

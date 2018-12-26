@@ -6,6 +6,7 @@ import { ProfileModel } from '../../models/user';
 import { MsgNotificationModel, MsgModel } from '../../models/msg';
 import { AuthProvider } from '../auth/auth';
 import { Status } from '../../models/status';
+import * as firebase from 'firebase/app';
 
 /*
   Generated class for the ChatProvider provider.
@@ -57,11 +58,45 @@ export class ChatProvider {
     return com.snapshotChanges();
   }
 
+  getNewMsg(id: string, startKey: string) {
+    let com: AngularFireList<MsgModel> =  null;
+    com = this.dataBase.list(`msg/${id}`, ref => ref.orderByChild('timestamp').startAt(startKey));
+    return com.snapshotChanges();
+  }
+
+  time() {
+    return firebase.database.ServerValue.TIMESTAMP;
+  }
+
+  sentMsg(key: string, text: string) {
+    const message: AngularFireList<MsgModel> = this.dataBase.list(`msg/${key}`);
+    let msg: MsgModel;
+    msg = new MsgModel; {
+      msg.timestamp = this.time();
+      msg.text = text;
+      msg.userId = this.userId;
+    }
+    return message.push(msg);
+  }
+  readOut(key: string) {
+    let ref: AngularFireObject<MsgNotificationModel> =  null;
+    ref = this.dataBase.object(`msgNotificationModel/${this.userId}/${key}`);
+    return ref.remove();
+  }
+  
+  notifiMsg(id: string) {
+    return this.dataBase.list(`msgNotificationModel/${id}`);
+  }
+
+  newMsg(userId: string, key: string) {
+    let ref: AngularFireObject<MsgNotificationModel> =  null;
+    ref = this.dataBase.object(`msgNotificationModel/${userId}/${key}`);
+    return ref.set({isRead: true});
+  }
+
   isReadOut(key: string) {
     let ref: AngularFireObject<MsgNotificationModel> =  null;
     ref = this.dataBase.object(`msgNotificationModel/${this.userId}/${key}`);
     return ref.snapshotChanges();
   }
-
-
 }

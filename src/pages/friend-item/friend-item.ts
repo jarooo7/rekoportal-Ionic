@@ -28,6 +28,7 @@ export class FriendItemPage {
     this.loadFriend();
     this.loadStat(uid.userId);
   }
+  isNotRead = false;
   classRead: string;
   friendId: UserId;
   msg: MsgModel ;
@@ -82,8 +83,10 @@ export class FriendItemPage {
     ).subscribe(result => {
         if (result.isRead) {
           this.classRead = 'bold';
+          this.isNotRead = true;
         } else {
           this.classRead = '';
+          this.isNotRead = false;
         }
     });
   }

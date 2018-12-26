@@ -1,5 +1,6 @@
 <ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle=" {{ 'nav.home' | translate }}"  tabIcon="home">{{'nav.home'|translate}</ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle=" {{ 'nav.contacts' | translate }}" tabIcon="contacts"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle=" {{ 'nav.profile' | translate }}" tabIcon="person"></ion-tab>
-</ion-tabs>
+      <ion-tab [root]="tab1Root" tabTitle=" {{ 'nav.home' | translate }}"  tabIcon="home">{{'nav.home'|translate}</ion-tab>
+      <ion-tab [root]="tab2Root" [show]="notifMsg" tabBadge="{{ msg }}" tabTitle=" {{ 'nav.contacts' | translate }}" tabIcon="contacts"></ion-tab>
+      <ion-tab [root]="tab2Root" [show]="!notifMsg" tabTitle=" {{ 'nav.contacts' | translate }}" tabIcon="contacts"></ion-tab>
+      <ion-tab [root]="tab3Root" tabTitle=" {{ 'nav.profile' | translate }}" tabIcon="person"></ion-tab>
+ </ion-tabs>
