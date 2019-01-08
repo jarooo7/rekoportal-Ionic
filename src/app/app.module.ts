@@ -29,6 +29,9 @@ import { FriendItemPage } from '../pages/friend-item/friend-item';
 import { MsgPage } from '../pages/msg/msg';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { GroupProvider } from '../providers/group/group';
+import { GroupItemPage } from '../pages/group-item/group-item';
+import { LikePage } from '../pages/like/like';
 
 
 
@@ -45,7 +48,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomePage,
     MsgPage,
     FriendItemPage,
-    TabsPage
+    TabsPage,
+    LikePage,
+    GroupItemPage
   ],
   imports: [
     BrowserModule,
@@ -72,9 +77,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     ContactPage,
     HomePage,
     MsgPage,
+    LikePage,
     LoginPage,
     FriendItemPage,
-    TabsPage
+    TabsPage,
+    GroupItemPage
   ],
   providers: [
     Firebase,
@@ -84,7 +91,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     ChatProvider,
-    FcmProvider
+    FcmProvider,
+    GroupProvider
   ]
 })
 export class AppModule {}

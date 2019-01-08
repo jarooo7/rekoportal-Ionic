@@ -1,19 +1,34 @@
 <ion-header>
   <ion-navbar color="dark">
-       <ion-title><img style="height: 40px;" src="../assets/imgs/logo.png"></ion-title>
+    <ion-title>
+      <img style="height: 40px;" src="../assets/imgs/logo.png">
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <page-about></page-about>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
- 
+  <ion-card *ngFor="let a of article | async">
+    <page-group-item [groupId]="a.groupId" [date]="a.timestamp"></page-group-item>
+    <ion-slides *ngIf="a.photos" pager loop zoom paginationType="progress">
+      <ion-slide *ngFor="let p of a.photos">
+        <img class="mx-auto" [src]="p">
+      </ion-slide>
+    </ion-slides>
+    <ion-card-content>
+      <ion-card-title>
+        {{a.title}}
+      </ion-card-title>
+      <p>{{a.text}}</p>
+    </ion-card-content>
+
+    <ion-row>
+        <page-like [postId]="a.key" [gid]="a.groupId"></page-like>
+    </ion-row>
+  </ion-card>
+
+
+
+  <ion-infinite-scroll (ionInfinite)="onScroll($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
