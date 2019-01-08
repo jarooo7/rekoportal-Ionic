@@ -2,6 +2,8 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { Firebase } from '@ionic-native/firebase';
+
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -25,6 +27,9 @@ import {AngularFireStorageModule} from 'angularfire2/storage';
 import { ChatProvider } from '../providers/chat/chat';
 import { FriendItemPage } from '../pages/friend-item/friend-item';
 import { MsgPage } from '../pages/msg/msg';
+import { FcmProvider } from '../providers/fcm/fcm';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -50,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFireModule.initializeApp(firebase_config),
     AngularFireAuthModule,
     AngularFireStorageModule,
+    AngularFirestoreModule, 
     AngularFireDatabaseModule,
     TranslateModule.forRoot({
       loader: {
@@ -71,11 +77,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabsPage
   ],
   providers: [
+    Firebase,
+    // FcmProvider,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    ChatProvider
+    ChatProvider,
+    FcmProvider
   ]
 })
 export class AppModule {}

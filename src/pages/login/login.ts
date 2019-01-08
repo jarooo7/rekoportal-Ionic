@@ -5,6 +5,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { map } from 'rxjs/operators';
+import { FcmProvider } from '../../providers/fcm/fcm';
 
 /**
  * Generated class for the LoginPage page.
@@ -27,6 +28,7 @@ export class LoginPage {
   logUser: Observable<firebase.User>;
 
   constructor( 
+    private fcm: FcmProvider,
     private auth: AuthProvider,
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -51,7 +53,11 @@ export class LoginPage {
   }
 
   async login(user: UserModel) {
-    this.auth.login(user).then(() => this.presentToast('tak', 'success')).catch(() => this.presentToast('nie', 'danger'));
+    this.auth.login(user).then(u => {
+      this.presentToast('tak', 'success');
+      this.fcm.getToken(u.uid);
+      u.uid
+    }).catch(() => this.presentToast('nie', 'danger'));
   }
   async register(user: UserModel) {
     this.auth.register(user).then(() => this.presentToast('tak', 'success')).catch(() => this.presentToast('nie', 'danger'));
