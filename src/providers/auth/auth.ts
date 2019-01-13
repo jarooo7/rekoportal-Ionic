@@ -6,6 +6,8 @@ import { User } from 'firebase';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
+import { GooglePlus } from '@ionic-native/google-plus';
+import { Platform } from 'ionic-angular';
 
 @Injectable()
 export class AuthProvider {
@@ -17,6 +19,8 @@ export class AuthProvider {
 
   constructor(
     private auth: AngularFireAuth, 
+    private gplus: GooglePlus,
+    private platform: Platform,
     private dataBase: AngularFireDatabase) {
       auth.authState.subscribe(user => {
         this.user = user;});
@@ -72,21 +76,58 @@ export class AuthProvider {
     }
     );
   }
-  googleLogin() {
-    return new Promise<any>((resolve, reject) => {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      this.auth.auth
-        .signInWithPopup(provider)
-        .then(res => {
-          resolve(res);
-        });
-    }).then((fireBaseUser) => {
-      
+
+  async nativeGoogleLogin(): Promise<void> {
+    try {
+  
+      const gplusUser = await this.gplus.login({
+        'webClientId': '1018805222981-pupu688mkirovej0hcvif1iprhn1llpe.apps.googleusercontent.com'
+      });
+      return await this.auth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken));
+  
+    } catch(err) {
+      console.log(err);
     }
-    );
   }
+  async webGoogleLogin(): Promise<void> {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      const credential = await this.auth.auth.signInWithPopup(provider);
+  
+    } catch(err) {
+      console.log(err)
+    }
+  
+  }
+
+  googleLogin() {
+    if (this.platform.is('cordova')) {
+      this.nativeGoogleLogin();
+    } else {
+      this.webGoogleLogin();
+    }
+  }
+
+  // googleLogin() {
+  //   return new Promise<any>((resolve, reject) => {
+  //     const provider = new firebase.auth.GoogleAuthProvider();
+  //     provider.addScope('profile');
+  //     provider.addScope('email');
+  //     this.auth.auth
+  //       .signInWithPopup(provider)
+  //       .then(res => {
+  //         resolve(res);
+  //       });
+  //   }).then((fireBaseUser) => {
+      
+  //   }
+  //   );
+  // }
+
+  //  googleLogin() {
+  //     this.auth.auth.signInWithPopup( new firebase.auth.GoogleAuthProvider()).then(res =>{});
+    
+  // }
 
 
   logout() {

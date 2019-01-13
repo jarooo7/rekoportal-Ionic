@@ -82,7 +82,8 @@ export class LoginPage {
   }
   
   public loginGoogle() {
-    this.auth.googleLogin().then(() => this.presentToast('tak', 'success')).catch(() => this.presentToast('nie', 'danger'));
+    this.auth.googleLogin();
+     // .then(() => this.presentToast('tak', 'success')).catch(() => this.presentToast('nie', 'danger'));
   }
 
   
