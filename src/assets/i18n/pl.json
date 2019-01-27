@@ -15,20 +15,12 @@
         "login": "Zaloguj się",
         "password": "Hasło",
         "email": "Email",
-        "registerText": "Jeśli nie posiadasz jeszcze konta",
         "signUp": "Zarejestruj się",
         "surname": "Nazwisko",
         "name": "Imie",
-        "rePassword": "Powtórz hasło",
-        "akcept": "Akceptuję",
-        "regulations": "regulamin",
         "fb": "Zaloguj się przez Facebook",
         "google": "Zaloguj się przez Google",
-        "forgotPassword": "Zapomiałeś hasła?",
-        "logout": "Wyloguj się",
-        "textResetPassword": "Wprowadź adres email by zresetować hasło",
-        "changePassword": "Zmień hasło",
-        "completeProfile": "Uzupełnij profil"
+        "logout": "Wyloguj się" 
     },
     "validationError": {
         "email": "Wprowadź adres email",
@@ -68,14 +60,9 @@
         "save": "Zapisz",
         "name": "Imię",
         "lastName": "Nazwisko",
-        "age": "Wiek",
-        "dateBirth": "Data urodzenia",
         "search": "Wyszukaj",
         "like": "Lubię to!",
         "next": "Załaduj więcej ...",
-        "searchText": "Wyszukaj użytkownika lub grupę",
-        "searchResult": "Wynik wyszukiwania",
-        "myProfile": "Mój profil",
         "contacts": "Kontakty",
         "refresh": "Odśwież"
     }

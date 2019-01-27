@@ -1,12 +1,69 @@
 {
-    "global":{
-        "language":"Language"
+    "nav": {
+        "home": "Home",
+        "profile": "Profile",
+        "contacts": "Contacts"
     },
-    "auth":{
-        "log": "Sign in",
-        "register": "Rejestracja",
+    "not-active": {
+        "title": "***************Aktywuj konto",
+        "info-text": "***************Aktywuj konto by móc korzystać w pełni z wszystkich funkcji. Na twój adres email został wysłany kod aktywacyjny dzięki któremu aktywujesz konto. Jeśli nie otrzymałeś maila aktywacyjnego wciśnij przycisk ponirzej.",
+        "send": "***************Wyślij ponownie email aktywacyjny"
+    },
+    "auth": {
+        "log": "Login",
+        "register": "Sign Up",
         "login": "Sign in",
         "password": "Password",
-        "email": "Email"
+        "email": "Email",
+        "signUp": "Sign Up",
+        "surname": "Last name",
+        "name": "First name",
+        "fb": "Sign in with Facebook",
+        "google": "Sign in with Google",
+        "logout": "Log Out"
+    },
+    "validationError": {
+        "email": "***************Введите электронную почту",
+        "required": "This field is required",
+        "smallTextSearch": "**************Текст слишком короткий"
+    },
+    "alert": {
+        "success": {
+            "welcom": "Welcome to RekoPortal",
+            "register": "***************Rejestracja powiodłą się",
+            "resetPassword": "***************Hasło zostało zresetowane",
+            "sendResetPassword": "***************Mail do resetu hasła został wysłąny",
+            "active": "***************Użytkownik został pomyślnie aktywowany",
+            "sendActiveEmail": "***************Email aktywacyjny został wysłany",
+            "addPost": "***************Post został dodany"
+        },
+        "error": {
+            "notConect": "***************Problem z połaczeniem",
+            "userNotFound": "***************Użytkownik o podanym adresie email nie istnieje",
+            "wrongPassword": "Wrong password",
+            "invalidEmail": "***************Błędny adres email",
+            "isEmail": "***************Użytkownik o podanym adresie email już istnieje",
+            "invalidCode": "***************Token wygasł wyślij maila ponownie",
+            "emailAlreadyInUse": "***************Adres e-mail jest już używany przez inne konto",
+            "notActive": "***************Wystąpił problem z aktywacją użytkownika",
+            "errorSendActiveEmail": "***************Wystąpił błąd przy wysyłaniu maila aktywacyjnego. Spróbuj jescze raz!",
+            "addPost": "***************Dodanie postu nie powieodło się!",
+            "accountExists": "***************Email jest użyty przy innym sposobie logowania"
+        }
+    },
+    "msg":{
+        "writeMsg": "Type a message "
+    },
+    "global": {
+        "or": "or",
+        "send": "Send",
+        "save": "Save",
+        "name": "First name",
+        "lastName": "Last name",
+        "search": "Search",
+        "like": "Like!",
+        "next": "Load more...",
+        "contacts": " Contacts ",
+        "refresh": "Refresh"
     }
 }

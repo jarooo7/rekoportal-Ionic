@@ -38,29 +38,14 @@ export class MyApp {
         case 'ru': {
           translateService.setDefaultLang('ru');
           break;
-        }
-        case 'de': {
-          translateService.setDefaultLang('de');
-          break;
-        }
-        case 'sk': {
-          translateService.setDefaultLang('sk');
-          break;
-        }
-        case 'lt': {
-          translateService.setDefaultLang('lt');
-          break;
-        }
-        case 'fr': {
-          translateService.setDefaultLang('fr');
-          break;
-        }
+        }      
         default: {
           translateService.setDefaultLang('pl');
         }
       }
     } else {
       translateService.setDefaultLang('pl');
+      localStorage.setItem('language', 'pl');
     }
    
   }

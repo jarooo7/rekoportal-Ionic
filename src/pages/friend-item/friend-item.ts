@@ -59,12 +59,22 @@ export class FriendItemPage {
   }
 
   openMsg(){
-    let profileModal = this.modalCtrl.create(MsgPage, {
-      id: this.friendId.userId,
-      msgId: this.friendId.msgId,
-      name: `${this.friend.name} ${this.friend.lastName}`, 
-      avatar: this.friend.avatar.url
+    let profileModal;
+    if(this.friend.avatar) {
+      profileModal = this.modalCtrl.create(MsgPage, {
+        id: this.friendId.userId,
+        msgId: this.friendId.msgId,
+        name: `${this.friend.name} ${this.friend.lastName}`, 
+        avatar: this.friend.avatar.url
       });
+    } else {
+      profileModal = this.modalCtrl.create(MsgPage, {
+        id: this.friendId.userId,
+        msgId: this.friendId.msgId,
+        name: `${this.friend.name} ${this.friend.lastName}`, 
+        avatar: null
+        });
+    }
     profileModal.present();
   }
 

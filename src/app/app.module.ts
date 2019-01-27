@@ -33,6 +33,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { GroupProvider } from '../providers/group/group';
 import { GroupItemPage } from '../pages/group-item/group-item';
 import { LikePage } from '../pages/like/like';
+import { RegisterPage } from '../pages/register/register';
 
 
 
@@ -51,7 +52,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FriendItemPage,
     TabsPage,
     LikePage,
-    GroupItemPage
+    GroupItemPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginPage,
     FriendItemPage,
     TabsPage,
-    GroupItemPage
+    GroupItemPage,
+    RegisterPage
   ],
   providers: [
     Firebase,

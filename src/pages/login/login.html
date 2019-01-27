@@ -18,11 +18,11 @@
     <h2>{{'auth.login'|translate}}
     </h2>
     <ion-item>
-      <ion-label>{{'auth.email'|translate}}</ion-label>
+      <ion-label floating>{{'auth.email'|translate}}</ion-label>
       <ion-input type=text [(ngModel)]="user.email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>{{'auth.password'|translate}}</ion-label>
+      <ion-label floating>{{'auth.password'|translate}}</ion-label>
       <ion-input type=password [(ngModel)]="user.password"></ion-input>
     </ion-item>
     <button ion-button (click)="login(user)">{{'auth.login'|translate}}</button>

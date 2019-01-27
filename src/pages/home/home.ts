@@ -4,6 +4,7 @@ import { GroupProvider } from '../../providers/group/group';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as _ from 'lodash';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-home',
@@ -20,6 +21,7 @@ export class HomePage implements OnInit {
 
 
   constructor(public navCtrl: NavController,
+    private translate: TranslateService,
     private groupService: GroupProvider
   ) {
 
@@ -68,4 +70,8 @@ export class HomePage implements OnInit {
   }
 
 
+  language(language: string) {
+    this.translate.use(language);
+    localStorage.setItem('language', language);
+  }
 }

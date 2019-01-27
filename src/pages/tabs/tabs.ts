@@ -20,6 +20,7 @@ export class TabsPage {
   logUser: Observable<firebase.User>;
   msg = 0;
   notifMsg = false;
+  isUser = false;
 
   constructor(
     private auth: AuthProvider,
@@ -27,8 +28,12 @@ export class TabsPage {
   ) {
     this.logUser = auth.authState$;
     this.logUser.subscribe(u => {
+      console.log(u);
       if (u) {
+        this.isUser = true;
         this.notifiMsg(u.uid);
+      } else {
+        this.isUser = false;
       }
     });
   }

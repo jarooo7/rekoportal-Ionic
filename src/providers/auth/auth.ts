@@ -52,6 +52,17 @@ export class AuthProvider {
       return profile.snapshotChanges();
     }
 
+    createProfile(profile: ProfileModel, uid: string) {
+      let  regProfile: AngularFireObject<ProfileModel> = null;
+      regProfile = this.dataBase
+      .object(`profile/${uid}`);
+      return regProfile.set(profile);
+    }
+
+    sendActiveEmail() {
+      return this.auth.auth.currentUser.sendEmailVerification();
+    }
+
     private updateOnDisconnect() {
       firebase.database().ref().child(`status/${this.userId}`)
               .onDisconnect()
@@ -134,7 +145,7 @@ export class AuthProvider {
     return this.auth.auth.signOut();
   }
 
-  register(user: UserModel){
-    return this.auth.auth.createUserWithEmailAndPassword(user.email, user.password)
+  register(email: string, password: string){
+    return this.auth.auth.createUserWithEmailAndPassword(email, password);
   }
 }

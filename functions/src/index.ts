@@ -27,41 +27,26 @@ exports.newArticle = functions.database.ref('/article/{key}')
     });
 
 
-exports.newSubscriberNotification = functions.database.ref('/msgNotificationModel/{userId}/{msgId}')
+exports.notificationMsg = functions.database.ref('/msgNotificationModel/{userId}/{msgId}')
     .onCreate(async (snapshot, context) => {
-        
-   
     const date = snapshot.val();
     const userId = date.userId;
-
-    // Notification content
-    const payload = {
+    const notif = {
       notification: {
           title: 'Nowa wiadomość ',
           body: `Masz nową wiadomość od ${date.name}`,
           icon: 'notification_icon'
       }
     }
-
-    const db = admin.firestore()
-    const devicesRef = db.collection('devices').where('userId', '==', userId)
-
-
-    // get the user's tokens and send notifications
-    const devices = await devicesRef.get();
-
+    const database = admin.firestore()
+    const ref = database.collection('devices').where('userId', '==', userId)
+    const devices = await ref.get();
     const tokens = [];
-
-    // send a notification to each device token
     devices.forEach(result => {
       const token = result.data().token;
-
       tokens.push( token )
     })
-
-    return admin.messaging().sendToDevice(tokens, payload)
-
-    // send a notification to each device token
+    return admin.messaging().sendToDevice(tokens, notif)
 });
 
 exports.emailVerifiedFb = functions.database.ref('/profile/{uid}')
