@@ -1,0 +1,8 @@
+<button [disabled]="!isAuth" *ngIf="!isLiked" (click)="addLike()" class="mx-auto" ion-button icon-start color="dark" clear small>
+    <ion-icon name="heart"></ion-icon>
+    <div>{{quantity}} {{'global.like'|translate}}</div>
+</button>
+<button [disabled]="!isAuth" *ngIf="isLiked" (click)="delLike()" class="mx-auto" ion-button icon-start color="danger" clear small>
+    <ion-icon name="heart"></ion-icon>
+    <div>{{quantity}} {{'global.like'|translate}}</div>
+</button>

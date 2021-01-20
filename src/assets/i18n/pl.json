@@ -1,0 +1,69 @@
+{
+    "nav": {
+        "home": "Strona główna",
+        "profile": "Profil",
+        "contacts": "Kontakty"
+    },
+    "not-active": {
+        "title": "Aktywuj konto",
+        "info-text": "Aktywuj konto by móc korzystać w pełni z wszystkich funkcji. Na twój adres email został wysłany kod aktywacyjny dzięki któremu aktywujesz konto. Jeśli nie otrzymałeś maila aktywacyjnego wciśnij przycisk ponirzej.",
+        "send": "Wyślij ponownie email aktywacyjny"
+    },
+    "auth": {
+        "log": "Logowanie",
+        "register": "Rejestracja",
+        "login": "Zaloguj się",
+        "password": "Hasło",
+        "email": "Email",
+        "signUp": "Zarejestruj się",
+        "surname": "Nazwisko",
+        "name": "Imie",
+        "fb": "Zaloguj się przez Facebook",
+        "google": "Zaloguj się przez Google",
+        "logout": "Wyloguj się" 
+    },
+    "validationError": {
+        "email": "Wprowadź adres email",
+        "required": "Uzupełnij pole",
+        "smallTextSearch": "Zbyt krótki tekst wyszukiwania"
+    },
+    "alert": {
+        "success": {
+            "welcom": "Witamy w RekoPortal",
+            "register": "Rejestracja powiodłą się",
+            "resetPassword": "Hasło zostało zresetowane",
+            "sendResetPassword": "Mail do resetu hasła został wysłąny",
+            "active": "Użytkownik został pomyślnie aktywowany",
+            "sendActiveEmail": "Email aktywacyjny został wysłany",
+            "addPost": "Post został dodany"
+        },
+        "error": {
+            "notConect": "Problem z połaczeniem",
+            "userNotFound": "Użytkownik o podanym adresie email nie istnieje",
+            "wrongPassword": "Błędne hasło",
+            "invalidEmail": "Błędny adres email",
+            "isEmail": "Użytkownik o podanym adresie email już istnieje",
+            "invalidCode": "Token wygasł wyślij maila ponownie",
+            "emailAlreadyInUse": "Adres e-mail jest już używany przez inne konto",
+            "notActive": "Wystąpił problem z aktywacją użytkownika",
+            "errorSendActiveEmail": "Wystąpił błąd przy wysyłaniu maila aktywacyjnego. Spróbuj jescze raz!",
+            "addPost": "Dodanie postu nie powieodło się!"
+        }
+    },
+    "msg":{
+        "writeMsg": "Napisz wiadomość"
+    },
+    "global": {
+        "language": "Język",
+        "or": "Lub",
+        "send": "Wyślij",
+        "save": "Zapisz",
+        "name": "Imię",
+        "lastName": "Nazwisko",
+        "search": "Wyszukaj",
+        "like": "Lubię to!",
+        "next": "Załaduj więcej ...",
+        "contacts": "Kontakty",
+        "refresh": "Odśwież"
+    }
+}

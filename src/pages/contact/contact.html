@@ -1,17 +1,25 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar color="dark">
+      <ion-title>{{'nav.contacts'|translate}}</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+  <div *ngIf="!isAuth">
+      <!-- <button [root]="tab3Root" ion-button >{{'auth.login'|translate}}</button> -->
+  </div>
+  <div *ngIf="isAuth">
+      <div *ngIf="!validate">
+        <h2>{{'not-active.title'|translate}}</h2>
+        <p>{{'not-active.info-text'|translate}}</p>
+        <button ion-button (click)="sendEmail()">{{'not-active.send'|translate}}</button>
+      </div>
+      <ion-list *ngIf="validate">
+          <!-- <ion-list-header></ion-list-header> -->
+          <ion-item *ngFor="let f of friends | async" >
+            <page-friend-item [getFriend]="f"></page-friend-item>
+          </ion-item>
+      </ion-list>
+    </div>
+    
 </ion-content>

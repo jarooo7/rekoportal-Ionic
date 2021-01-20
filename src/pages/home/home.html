@@ -1,17 +1,40 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>
+      <img style="height: 40px;" src="../assets/imgs/logo.png">
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-card *ngFor="let a of article | async">
+    <page-group-item [groupId]="a.groupId" [date]="a.timestamp"></page-group-item>
+    <ion-slides *ngIf="a.photos" pager loop zoom paginationType="progress">
+      <ion-slide *ngFor="let p of a.photos">
+        <img class="mx-auto" [src]="p">
+      </ion-slide>
+    </ion-slides>
+    <ion-card-content>
+      <ion-card-title>
+        {{a.title}}
+      </ion-card-title>
+      <p>{{a.text}}</p>
+    </ion-card-content>
+
+    <ion-row>
+        <page-like [postId]="a.key" [gid]="a.groupId"></page-like>
+    </ion-row>
+  </ion-card>
+  <ion-fab right bottom>
+    <button ion-fab color="dark"><ion-icon ios="ios-globe" md="md-globe"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab color="dark" (click)="language('en')"><img src="{{'../../assets/imgs/en.svg'}}"></button>
+      <button ion-fab color="dark" (click)="language('pl')"><img src="{{'../../assets/imgs/pl.svg'}}"></button>
+      <button ion-fab color="dark" (click)="language('ru')"><img src="{{'../../assets/imgs/ru.svg'}}"></button>
+    </ion-fab-list>
+</ion-fab>
+
+  <ion-infinite-scroll (ionInfinite)="onScroll($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

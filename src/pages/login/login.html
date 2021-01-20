@@ -7,20 +7,60 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>login</ion-title>
+    <ion-title>{{'nav.profile'|translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-item>
-    <ion-label>Email </ion-label>
-    <ion-input type=text [(ngModel)]="user.email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Password</ion-label>
-    <ion-input type=text [(ngModel)]="user.password"></ion-input>
-  </ion-item>
-  <button ion-button (click)="login(user)">Login</button>
+<ion-content padding text-center>
+  <div *ngIf="!isAuth">
+    <h2>{{'auth.login'|translate}}
+    </h2>
+    <ion-item>
+      <ion-label floating>{{'auth.email'|translate}}</ion-label>
+      <ion-input type=text [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{'auth.password'|translate}}</ion-label>
+      <ion-input type=password [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+    <button ion-button (click)="login(user)">{{'auth.login'|translate}}</button>
+    <button color="light" ion-button (click)="register(user)">{{'auth.register'|translate}}</button>
+    <h5 text-center padding-vertical>
+      {{'global.or'|translate}}
+    </h5>
+    <button color="dark" text-capitalize block ion-button icon-start (click)="loginFb()">
+      <ion-icon name="logo-facebook"></ion-icon> {{'auth.fb'|translate}}
+    </button>
+    <br>
+    <button color="dark" text-capitalize block ion-button icon-start (tab)="loginGoogle()">
+      <ion-icon name="logo-google"></ion-icon> {{'auth.google'|translate}}
+    </button>
+  </div>
+  <div *ngIf="isAuth">
+    <div *ngIf="!validate">
+      <h2>{{'not-active.title'|translate}}</h2>
+      <p>{{'not-active.info-text'|translate}}</p>
+      <button ion-button (click)="sendEmail()">{{'not-active.send'|translate}}</button>
+    </div>
+    <ion-grid *ngIf="validate && profile">
+      <ion-row>
+        <ion-col col-12>
+          <ion-avatar *ngIf="profile.avatar">
+            <img class="avatar" src="{{profile.avatar.url}}">
+          </ion-avatar>
+          <ion-avatar *ngIf="!profile.avatar">
+            <img class="avatar" src="{{'../../assets/imgs/profile.png'}}">
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <h2>{{profile.name}} {{profile.lastName}}</h2>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <button ion-button (click)="logout()">{{'auth.logout'|translate}}</button>
+  </div>
 </ion-content>

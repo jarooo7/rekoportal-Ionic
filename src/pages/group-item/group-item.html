@@ -1,0 +1,10 @@
+<ion-item *ngIf="group">
+  <ion-avatar item-start *ngIf="group.avatar">
+      <img class="avatar" src="{{group.avatar.url}}">
+    </ion-avatar>
+    <ion-avatar item-start *ngIf="!group.avatar">
+      <img class="avatar" src="{{'../../assets/imgs/group.png'}}">
+    </ion-avatar>
+  <h2>{{group.name}}</h2>
+  <p>{{date | date: 'yyyy-MM-dd  HH:mm'}}</p>
+</ion-item>
